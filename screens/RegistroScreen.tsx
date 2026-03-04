@@ -1,9 +1,25 @@
-import { ImageBackground, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { ImageBackground, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native'
+import React, { useState } from 'react'
 import LoginScreen from './LoginScreen'
 
 
 export default function RegistroScreen({ navigation }: any) {
+
+  const [email, setEmail] = useState('')
+
+  const [nombre, setNombre] = useState('')
+  const [telefono, setTelefono] = useState('')
+  const [password, setPassword] = useState('')
+
+
+  async function camposIncompletos() {
+    if (!email || !password || !telefono || !nombre) {
+      Alert.alert("Campos incompletos", "Por favor ingresa correo y contraseña");
+      return;
+    }
+
+    navigation.navigate('botom');
+  }
   return (
     <ImageBackground
       source={{ uri: "https://png.pngtree.com/thumb_back/fw800/background/20221011/pngtree-restaurant-menu-design-paper-cover-dining-photo-image_14986192.jpg" }}
@@ -20,7 +36,8 @@ export default function RegistroScreen({ navigation }: any) {
             placeholder="ejemplo@camarero.com"
             placeholderTextColor="rgba(255, 255, 255, 0.5)"
             style={styles.input}
-
+            value={email}
+            onChangeText={(text) => setEmail(text)}
             keyboardType="email-address"
             autoCapitalize="none"
           />
@@ -30,6 +47,8 @@ export default function RegistroScreen({ navigation }: any) {
             placeholder="Bryan"
             placeholderTextColor="rgba(255, 255, 255, 0.5)"
             style={styles.input}
+              value={nombre}
+            onChangeText={(text) => setEmail(text)}
             keyboardType="default"
 
           />
@@ -39,6 +58,8 @@ export default function RegistroScreen({ navigation }: any) {
             placeholder="099999999"
             placeholderTextColor="rgba(255, 255, 255, 0.5)"
             style={styles.input}
+              value={telefono}
+            onChangeText={(text) => setEmail(text)}
             keyboardType="default"
 
           />
@@ -49,6 +70,8 @@ export default function RegistroScreen({ navigation }: any) {
             placeholder="********"
             placeholderTextColor="rgba(255, 255, 255, 0.5)"
             style={styles.input}
+              value={password}
+            onChangeText={(text) => setEmail(text)}
             secureTextEntry={true}
 
           />
@@ -58,9 +81,9 @@ export default function RegistroScreen({ navigation }: any) {
           <Text style={styles.textBtn}>REGISTRATE</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Registro')}>
-          <Text style={styles.linkText}>¿No tienes cuenta?
-            <Text style={styles.linkHighlight}> Regístrate aquí</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Pedido')}>
+          <Text style={styles.linkText}>¿Ya tienes cuenta?
+            <Text style={styles.linkHighlight}> Ingresa aquí</Text>
           </Text>
         </TouchableOpacity>
 

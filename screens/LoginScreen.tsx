@@ -2,8 +2,9 @@ import { ImageBackground, StyleSheet, Text, View, TextInput, TouchableOpacity, A
 import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
-export default function LoginScreen() {
-  const navigation = useNavigation<any>();
+export default function LoginScreen({ navigation }: any) {
+
+  
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -51,7 +52,7 @@ export default function LoginScreen() {
           <Text style={styles.textBtn}>INGRESO</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate('registro')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Registro')}>
           <Text style={styles.linkText}>¿No tienes cuenta?
             <Text style={styles.linkHighlight}> Regístrate aquí</Text>
           </Text>
